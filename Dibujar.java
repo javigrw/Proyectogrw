@@ -79,9 +79,8 @@ public class Dibujar {
 	}
 	
 	public static void editor (File pro) {
-		Scanner in = new Scanner(System.in);
-		System.out.println("Escribe el nombre del nivel");
-        File Nivel = new File(in.nextLine());
+	System.out.println("Escribe el nombre del nivel");
+        File Nivel = new File(sc.nextLine());
         try {
             FileOutputStream escribir = new FileOutputStream(Nivel);
             if (Nivel.isFile()) {
@@ -364,7 +363,6 @@ public class Dibujar {
 	
 	public static void selE (File pro) {
 		int caso = -1;
-		Scanner in = new Scanner(System.in);
 		try {
 			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
 			caso = sc.nextInt();
@@ -380,7 +378,7 @@ public class Dibujar {
 		switch(caso) {
 			case 0: clear();menus(1,pro);selA(pro);break;
 			case 1: clear();editor(pro);break;
-			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");jugarP(in.nextLine(),pro);break;
+			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");jugarP(sc.nextLine(),pro);break;
 			default: break;
 		}
 		

@@ -80,7 +80,7 @@ public class Dibujar {
 	
 	public static void editor (File pro) {
 	System.out.println("Escribe el nombre del nivel");
-        File Nivel = new File(sc.nextLine());
+        File Nivel = new File(sc.nextLine());//No funciona
         try {
             FileOutputStream escribir = new FileOutputStream(Nivel);
             if (Nivel.isFile()) {
@@ -378,7 +378,7 @@ public class Dibujar {
 		switch(caso) {
 			case 0: clear();menus(1,pro);selA(pro);break;
 			case 1: clear();editor(pro);break;
-			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");jugarP(sc.nextLine(),pro);break;
+			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");jugarP(sc.nextLine()/*No Funciona*/,pro);break;
 			default: break;
 		}
 		

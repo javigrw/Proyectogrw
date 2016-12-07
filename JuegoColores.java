@@ -80,9 +80,23 @@ public class JuegoColores {
 	
 	public static void editor (File pro, String nombre) {
 		File Nivel = new File("/niveles/"+nombre);
-		Nivel.getParentFile().mkdir();
+		File carpeta = new File("/niveles");
 		try {
-			Nivel.createNewFile();
+			if(carpeta.exists()==false){
+				carpeta.mkdir();
+			}else{
+			}
+			if(Nivel.isFile()==true){
+				System.out.println("Ya existe un nivel con el mismo nombre");
+				System.out.println("Elije un nuevo nombre para el programa");
+				editor(pro,sc.next());
+				
+			
+			}else{
+				Nivel.createNewFile();
+			}
+			
+			
 		} catch (IOException er) {
 		}
         try {
@@ -117,7 +131,7 @@ public class JuegoColores {
             }
             escribir.close();
             menus(6,pro);
-            selE(pro);
+            seleccionarEditor(pro);
             
         }catch (IOException e) {
         }
@@ -156,7 +170,6 @@ public class JuegoColores {
 		}
 		return x;
 	}
-	
 	
 	public static void iniciarstats(File estadisticas){
         try{
@@ -365,9 +378,8 @@ public class JuegoColores {
 		}
 	}
 	
-	public static void selE (File pro) {
+	public static void seleccionarEditor (File pro) {
 		int caso = -1;
-		Scanner in = new Scanner (System.in);
 		try {
 			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
 			caso = sc.nextInt();
@@ -378,10 +390,10 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selE(pro);
+			seleccionarEditor(pro);
 		}
 		switch(caso) {
-			case 0: clear();menus(1,pro);selA(pro);break;
+			case 0: clear();menus(1,pro);menuPrimero(pro);break;
 			case 1: clear();System.out.println("Escribe el nombre del nivel");String crear = sc.next();editor(pro,crear);break;
 			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");String jugar = sc.next();jugarP(jugar,pro);break;
 			default: break;
@@ -389,8 +401,7 @@ public class JuegoColores {
 		
 	}
 	
-	
-	public static void selO (File pro) {
+	public static void seleccionarOpcion (File pro) {
 		int caso = -1;
 		try {
 			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
@@ -402,19 +413,19 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selO(pro);
+			seleccionarOpcion(pro);
 		}
 		switch(caso) {
-			case 0: clear();menus(1,pro);selA(pro);break;
-			case 1: clear();escribirposicion(1,777,pro,"progresivo.txt");menus(1,pro);selA(pro);break;
-			case 2:	clear();escribirposicion(2,777,pro,"progresivo.txt");menus(1,pro);selA(pro);break;
-			case 3:	clear();escribirposicion(3,777,pro,"progresivo.txt");menus(1,pro);selA(pro);break;
+			case 0: clear();menus(1,pro);menuPrimero(pro);break;
+			case 1: clear();escribirposicion(1,777,pro,"progresivo.txt");menus(1,pro);menuPrimero(pro);break;
+			case 2:	clear();escribirposicion(2,777,pro,"progresivo.txt");menus(1,pro);menuPrimero(pro);break;
+			case 3:	clear();escribirposicion(3,777,pro,"progresivo.txt");menus(1,pro);menuPrimero(pro);break;
 			default: break;
 		}
 		
 	}
 	
-	public static void selP (File pro) {
+	public static void seleccionarProgresivo (File pro) {
 		int caso = -1;
 		try {
 			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
@@ -426,10 +437,10 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selP(pro);
+			seleccionarProgresivo(pro);
 		}
 		switch(caso) {
-			case 0: clear();menus(1,pro);selA(pro);break;
+			case 0: clear();menus(1,pro);menuPrimero(pro);break;
 			case 1: clear();juego(9,9,2,2,1,pro,null);break;
 			case 2:	clear();juego(9,9,3,2,2,pro,null);break;
 			case 3:	clear();juego(9,9,3,2,3,pro,null);break;
@@ -520,9 +531,7 @@ public class JuegoColores {
 		return x;
 	}
 	
-	
-	
-	public static void selT (int a,File pro) {
+	public static void seleccionarSize (int a,File pro) {
 		int caso = -1;
 		int cont = 0;
 		try {
@@ -535,18 +544,18 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selT(a,pro);
+			seleccionarSize(a,pro);
 		}
 		switch(caso) {
-			case 0: clear();menus(1,pro);selA(pro);break;
-			case 1: clear();info(1,9,9,a,cont,1,0,pro);menus(2,pro);selF1(9,9,a,pro);break;
-			case 2: clear();info(1,11,11,a,cont,1,0,pro);menus(2,pro);selF1(11,11,a,pro);break;
-			case 3: clear();info(1,15,15,a,cont,1,0,pro);menus(2,pro);selF1(15,15,a,pro);break;
+			case 0: clear();menus(1,pro);menuPrimero(pro);break;
+			case 1: clear();info(1,9,9,a,cont,1,0,pro);menus(2,pro);finJuego(9,9,a,pro);break;
+			case 2: clear();info(1,11,11,a,cont,1,0,pro);menus(2,pro);finJuego(11,11,a,pro);break;
+			case 3: clear();info(1,15,15,a,cont,1,0,pro);menus(2,pro);finJuego(15,15,a,pro);break;
 			default: break;
 		}
 	}
 	
-	public static void selC (int f, int c,File pro) {
+	public static void seleccionarColor (int f, int c,File pro) {
 		int color = -1;
 		try {
 			System.out.println("Por favor, elija un nÃºmero de colores entre 2 y 6");
@@ -558,16 +567,16 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selC(f,c,pro);
+			seleccionarColor(f,c,pro);
 		}
 		int cont = 0;
 		clear();
 		info(1,f,c,color,cont,1,0,pro);
 		menus(2,null);
-		selF1(f,c,color,pro);
+		finJuego(f,c,color,pro);
 	}
 	
-	public static void selF1 (int f,int c, int a, File pro) {
+	public static void finJuego (int f,int c, int a, File pro) {
 		int caso = -1;
 		try {
 			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
@@ -579,13 +588,13 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selF1(f,c,a,pro);
+			finJuego(f,c,a,pro);
 		}
 		switch(caso) {
-			case 0: clear();menus(1,pro);selA(pro);break;
+			case 0: clear();menus(1,pro);menuPrimero(pro);break;
 			case 1: clear();juego(f,c,a,caso,0,pro,null);break;
-			case 2: clear();menus(3,pro);selT(a,pro);break;
-			case 3: clear();;selC(f,c,pro);break;
+			case 2: clear();menus(3,pro);seleccionarSize(a,pro);break;
+			case 3: clear();;seleccionarColor(f,c,pro);break;
 			default: break;
 		}
 		
@@ -731,7 +740,7 @@ public class JuegoColores {
 			clear();
 			System.out.println(" ");
 			menus(6,pro);
-			selE(pro);
+			seleccionarEditor(pro);
 		}
 		if(caso==2) {
 			int[][] x = nivelesP(nivel);
@@ -755,7 +764,7 @@ public class JuegoColores {
 			clear();
 			System.out.println(" ");
 			menus(4,pro);
-			selP(pro);
+			seleccionarProgresivo(pro);
 		}
 		if(caso==1) {
 			int[][] x = crear(f,c,a);
@@ -779,7 +788,7 @@ public class JuegoColores {
 			clear();
 			info(1,f,c,a,cont,1,0,pro);
 			menus(2,null);
-			selF1(f,c,a,pro);
+			finJuego(f,c,a,pro);
 		}
 	}
 	
@@ -789,8 +798,7 @@ public class JuegoColores {
 		}
 	}
 	
-	
-	public static void selA (File progresivo) {
+	public static void menuPrimero (File progresivo) {
 		int caso = -1;
 		
 		try {
@@ -803,17 +811,17 @@ public class JuegoColores {
 		}
 		catch(Exception e) {
 			sc.next();
-			selA(progresivo);
+			menuPrimero(progresivo);
 		}
 		switch(caso) {
 			case 0: clear();System.out.println("    FIN DEL JUEGO");break;
 			case 1: clear();juego(9,9,2,caso,0,progresivo,null);break;
-			case 2: clear();menus(4,progresivo);selP(progresivo);break;
+			case 2: clear();menus(4,progresivo);seleccionarProgresivo(progresivo);break;
 			case 3: clear();reiniciarstats(progresivo,"progresivo.txt");
 					System.out.println("ESTADISTICAS REINICIADAS");
-					menus(1,progresivo);selA(progresivo);break;
-			case 4: clear();menus(5,null);selO(progresivo);break;
-			case 5: clear();menus(6,null);selE(progresivo);break;
+					menus(1,progresivo);menuPrimero(progresivo);break;
+			case 4: clear();menus(5,null);seleccionarOpcion(progresivo);break;
+			case 5: clear();menus(6,null);seleccionarEditor(progresivo);break;
 			default: break;
 		
 		}
@@ -853,7 +861,6 @@ public class JuegoColores {
 			default: break;
 		}
 	}
-	
 
 	public static void printear (int[][] x, int f, int c,int a,int cont ,int nivel,File pro) {
 		int i,j,caso=1,casoi=1;
@@ -988,6 +995,7 @@ public class JuegoColores {
 		}
 		return igual;		
 	}
+	
 	public static void checkv3(int[][]x,int i,int j,int y,int f,int c) {
 		if((i>=0 && i<=f)&&(j>=0 && j<=c)) {
 			if(i!=0){
@@ -1024,6 +1032,6 @@ public class JuegoColores {
 		}
 		escribirposicion(1,777,progresivo,"progresivo.txt");
 		menus(1,progresivo);
-		selA(progresivo);
+		menuPrimero(progresivo);
 	}
 }

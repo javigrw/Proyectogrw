@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.Scanner;
+import java.nio.file.*;
 
 public class JuegoColores {
 	
@@ -80,8 +81,8 @@ public class JuegoColores {
 	}
 	
 	public static void editor (String nombre) {
-		File Nivel = new File("\nniveles/"+nombre);
-		File carpeta = new File("\nniveles");
+		File Nivel = new File("niveles/"+nombre);
+		File carpeta = new File("niveles");
 		try {
 			if(carpeta.exists()==false){
 				carpeta.mkdirs();
@@ -140,7 +141,7 @@ public class JuegoColores {
     }
 	
 	public static void jugarP (String s) {
-		File save = new File("\nniveles/"+s);
+		File save = new File("niveles/"+s);
 		int cont = 1;
 		int f = leerposicion(cont,save);
 		cont++;
@@ -398,10 +399,53 @@ public class JuegoColores {
 		switch(caso) {
 			case 0: clear();menus(1);menuPrimero();break;
 			case 1: clear();System.out.println("Escribe el nombre del nivel");String crear = sc.next();editor(crear);break;
-			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");String jugar = sc.next();jugarP(jugar);break;
+			case 2: clear();seleccionarPersonalizado ();break;
+			case 3:	clear();System.out.println("Escribe el nombre del nivel a jugar");String jugar = sc.next();jugarP(jugar);break;
 			default: break;
 		}
 		
+	}
+	
+	public static void seleccionarPersonalizado () {
+		int j = 1;
+		int k = 1;
+		String s ="";
+		try {
+			Path dir = Paths.get("niveles/");
+			DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
+			System.out.println("0.Volver al menu MODO DE JUEGO");
+			for (Path file: stream) {
+				System.out.println(j+"."+file.getFileName());
+				j++;
+			}
+		} catch (IOException e) {
+		}
+		int caso = -1;
+		try {
+			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
+			caso = sc.nextInt();
+			while(caso<0 || caso >j) {
+				System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
+				caso = sc.nextInt();		
+			}
+			Path dir = Paths.get("niveles/");
+			DirectoryStream<Path> stream = Files.newDirectoryStream(dir);
+			for (Path file: stream) {
+				if (k==caso) {
+				s=""+file.getFileName();
+				}
+				k++;
+			}
+		}
+		catch(Exception e) {
+			sc.next();
+			seleccionarPersonalizado();
+		}
+		
+		switch(caso) {
+			case 0: clear();menus(1);menuPrimero();break;
+			default: clear();jugarP(s);break;
+		}
 	}
 	
 	public static void seleccionarOpcion () {

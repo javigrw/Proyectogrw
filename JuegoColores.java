@@ -14,7 +14,7 @@ public class JuegoColores {
 			for(j=0;j<=c-1;j++) {
 				if(opcion==1) {
 					if(x[i][j] ==1){
-						System.out.print("\033[38;5;196;48;5;196m"+x[i][j]+"\033[0m");//ojo barro
+						System.out.print("\033[38;5;196;48;5;196m"+x[i][j]+"\033[0m");
 					}
 					if(x[i][j] ==2){
 						System.out.print("\033[38;5;34;48;5;34m"+x[i][j]+"\033[0m");

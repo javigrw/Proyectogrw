@@ -80,11 +80,11 @@ public class JuegoColores {
 	}
 	
 	public static void editor (String nombre) {
-		File Nivel = new File("/niveles/"+nombre);
-		File carpeta = new File("/niveles");
+		File Nivel = new File("\\home\\javigrw\\niveles\\"+nombre);
+		File carpeta = new File("\\home\\javigrw\\niveles");
 		try {
 			if(carpeta.exists()==false){
-				carpeta.mkdir();
+				carpeta.mkdirs();
 			}else{
 			}
 			if(Nivel.isFile()==true){

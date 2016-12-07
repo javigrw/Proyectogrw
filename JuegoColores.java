@@ -80,11 +80,11 @@ public class JuegoColores {
 	}
 	
 	public static void editor (String nombre) {
-		File Nivel = new File("/niveles/"+nombre);
-		File carpeta = new File("/niveles");
+		File Nivel = new File("\nniveles/"+nombre);
+		File carpeta = new File("\nniveles");
 		try {
 			if(carpeta.exists()==false){
-				carpeta.mkdir();
+				carpeta.mkdirs();
 			}else{
 			}
 			if(Nivel.isFile()==true){
@@ -140,7 +140,7 @@ public class JuegoColores {
     }
 	
 	public static void jugarP (String s) {
-		File save = new File("/niveles/"+s);
+		File save = new File("\nniveles/"+s);
 		int cont = 1;
 		int f = leerposicion(cont,save);
 		cont++;

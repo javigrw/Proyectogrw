@@ -78,9 +78,13 @@ public class JuegoColores {
 
 	}
 	
-	public static void editor (File pro) {
-	System.out.println("Escribe el nombre del nivel");
-        File Nivel = new File(sc.nextLine());//No funciona .
+	public static void editor (File pro, String nombre) {
+		File Nivel = new File("/niveles/"+nombre);
+		Nivel.getParentFile().mkdir();
+		try {
+			Nivel.createNewFile();
+		} catch (IOException er) {
+		}
         try {
             FileOutputStream escribir = new FileOutputStream(Nivel);
             if (Nivel.isFile()) {
@@ -121,7 +125,7 @@ public class JuegoColores {
     }
 	
 	public static void jugarP (String s,File pro) {
-		File save = new File(s);
+		File save = new File("/niveles/"+s);
 		int cont = 1;
 		int f = leerposicion(cont,save);
 		cont++;
@@ -363,6 +367,7 @@ public class JuegoColores {
 	
 	public static void selE (File pro) {
 		int caso = -1;
+		Scanner in = new Scanner (System.in);
 		try {
 			System.out.println("Por favor, elija una de las opciones que se muestra en pantalla");
 			caso = sc.nextInt();
@@ -377,8 +382,8 @@ public class JuegoColores {
 		}
 		switch(caso) {
 			case 0: clear();menus(1,pro);selA(pro);break;
-			case 1: clear();editor(pro);break;
-			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");jugarP(sc.nextLine()/*No Funciona .*/,pro);break;
+			case 1: clear();System.out.println("Escribe el nombre del nivel");String crear = sc.next();editor(pro,crear);break;
+			case 2:	clear();System.out.println("Escribe el nombre del nivel a jugar");String jugar = sc.next();jugarP(jugar,pro);break;
 			default: break;
 		}
 		

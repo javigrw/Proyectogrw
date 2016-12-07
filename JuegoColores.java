@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class Dibujar {
+public class JuegoColores {
 	
 	public static Scanner sc = new Scanner(System.in);
 	

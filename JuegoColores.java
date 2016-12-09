@@ -7,6 +7,27 @@ public class JuegoColores {
 	
 	public static Scanner sc = new Scanner(System.in);
 	
+	public static void statsSel(int x);
+		int [] x = new int [50];
+		if(x==1) {
+			statstart(x);
+		}
+		else {
+			statsend (x);
+		}
+	
+	public static void statstart (int [] x) {
+		File progresivo = new File("progresivo.txt");
+		for (i=1;i<=50;i++) {
+			x[i] = leerposicion(i,progresivo);
+		}
+		
+	public static void statsend (int [] x) {
+		File progresivo = new File("progresivo.txt");
+		for (i=1;i<=50;i++) {
+			escribirposicion(x[i],i,progresivo,'progresivo.txt');
+		}
+	
 	public static void printearpers (int[][] x, int f, int c) {
 		int i,j;
 		File progresivo = new File("progresivo.txt");

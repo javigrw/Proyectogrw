@@ -713,24 +713,16 @@ public class JuegoColores {
 				}
 				if(menu==2) {
 					if(leerposicion((nivel),progresivo)==0) {
-						System.out.print("No hay estadisticas aún");
+						System.out.print("       No hay estadisticas aún");
 						
 					}
 					else {
-						System.out.print("Menor número de pasos empleados :"+leerposicion((nivel),progresivo)); 
+						System.out.print("       Menor número de pasos empleados :"+leerposicion((nivel),progresivo)); 
 						
 					}
 				break;
 				}
 				if(menu==3) {
-					if(leerposicion((800+2*f+3*c+2*a+cont-7),progresivo)==0) {
-						System.out.print("       No hay estadisticas aún");
-						
-					}
-					else {
-						System.out.print("       Menor número de pasos empleados :"+leerposicion((800+2*f+3*c+2*a+cont-7),progresivo)); 
-						
-					}
 				break;
 				}
 				if(leerposicion(((((f+c)*4)+a)+20),progresivo)==0) {
@@ -784,13 +776,6 @@ public class JuegoColores {
 				clear();
 				printear(x,f,c,a,cont,nivel);
 			}
-			if(leerposicion((800+2*f+3*c+2*a+cont-7),progresivo)>cont || leerposicion((800+2*f+3*c+2*a+cont-7),progresivo)==0 ) {
-				System.out.println("FELICIDADES, HAS BATIDO EL RECORD DE ESTE TABLERO");
-				System.out.println("GUARDANDO RECORD............");
-				escribirposicion(cont,nivel,progresivo,"progresivo.txt");
-				
-			}
-			
 			clear();
 			System.out.println(" ");
 			menus(6);
@@ -875,7 +860,7 @@ public class JuegoColores {
 			case 1: clear();juego(9,9,2,caso,0,null);break;
 			case 2: clear();menus(4);seleccionarProgresivo();break;
 			case 3: clear();reiniciarstats();
-					System.out.println("ESTADISTICAS REINICIADAS");
+					System.out.println("         ESTADISTICAS REINICIADAS");
 					menus(1);menuPrimero();break;
 			case 4: clear();menus(5);seleccionarOpcion();break;
 			case 5: clear();menus(6);seleccionarEditor();break;
